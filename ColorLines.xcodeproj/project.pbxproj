@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFE16961296D000000AFAC8C /* FigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16960296D000000AFAC8C /* FigureModel.swift */; };
+		BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */; };
+		BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16966296D0BA900AFAC8C /* GameFieldView.swift */; };
 		BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */; };
 		BFE6A5EF296CFA4700140077 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6A5EE296CFA4700140077 /* MainView.swift */; };
 		BFE6A5F1296CFA4800140077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE6A5F0296CFA4800140077 /* Assets.xcassets */; };
@@ -14,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BFE16960296D000000AFAC8C /* FigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureModel.swift; sourceTree = "<group>"; };
+		BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLinesViewModel.swift; sourceTree = "<group>"; };
+		BFE16966296D0BA900AFAC8C /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
 		BFE6A5E9296CFA4700140077 /* ColorLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLinesApp.swift; sourceTree = "<group>"; };
 		BFE6A5EE296CFA4700140077 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE6A5EE296CFA4700140077 /* MainView.swift */,
+				BFE16966296D0BA900AFAC8C /* GameFieldView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -79,6 +86,8 @@
 		BFE6A5FB296CFAF300140077 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BFE16960296D000000AFAC8C /* FigureModel.swift */,
+				BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -153,7 +162,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFE16961296D000000AFAC8C /* FigureModel.swift in Sources */,
 				BFE6A5EF296CFA4700140077 /* MainView.swift in Sources */,
+				BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */,
+				BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */,
 				BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
