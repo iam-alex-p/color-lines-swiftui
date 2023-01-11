@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var colorLinesViewModel = ColorLinesViewModel()
+    @StateObject var colorLinesViewModel = ColorLinesViewModel<Ball>()
     
     var body: some View {
         VStack {
             Text("Score: \(colorLinesViewModel.score)")
+            Spacer()
             GameFieldView(colorLinesViewModel: colorLinesViewModel)
+            Spacer()
+            Button("New Game") {
+                colorLinesViewModel.startNewGame()
+            }
         }
         .padding()
     }

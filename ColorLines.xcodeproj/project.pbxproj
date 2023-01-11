@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF8B7260296E5CBA00809784 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8B725F296E5CBA00809784 /* BallView.swift */; };
 		BFE16961296D000000AFAC8C /* FigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16960296D000000AFAC8C /* FigureModel.swift */; };
 		BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */; };
 		BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16966296D0BA900AFAC8C /* GameFieldView.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF8B725F296E5CBA00809784 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		BFE16960296D000000AFAC8C /* FigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureModel.swift; sourceTree = "<group>"; };
 		BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLinesViewModel.swift; sourceTree = "<group>"; };
 		BFE16966296D0BA900AFAC8C /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				BFE6A5EE296CFA4700140077 /* MainView.swift */,
 				BFE16966296D0BA900AFAC8C /* GameFieldView.swift */,
+				BF8B725F296E5CBA00809784 /* BallView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				BFE16961296D000000AFAC8C /* FigureModel.swift in Sources */,
 				BFE6A5EF296CFA4700140077 /* MainView.swift in Sources */,
 				BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */,
+				BF8B7260296E5CBA00809784 /* BallView.swift in Sources */,
 				BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */,
 				BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */,
 			);
@@ -318,7 +322,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -353,7 +357,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

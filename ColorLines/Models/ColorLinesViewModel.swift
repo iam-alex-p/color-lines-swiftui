@@ -5,12 +5,18 @@
 //  Created by Aleksei Pokolev on 1/9/23.
 //
 
-import Foundation
+import SwiftUI
+
+struct Point: Hashable {
+    let x: Int
+    let y: Int
+}
 
 protocol Game: ObservableObject {
-    typealias Point = (x: Int, y: Int)
+    associatedtype FigureType: Figure
     
-    var field: [[Ball?]] { get set }
+    var field: [[FigureType?]] { get set }
+    var freeCells: Set<Point> { get set }
     var maxX: Int { get }
     var maxY: Int { get }
     var newFigureAmt: Int { get }
@@ -20,35 +26,68 @@ protocol Game: ObservableObject {
     func moveFigure(from: Point, to: Point) -> Bool
     func changeScore(points: Int)
     func addRandomFigures(qty: Int)
-    func removeFigures(figures: [Point])
+    func removeFigures(cells: [Point])
 }
 
-class ColorLinesViewModel: Game {
-    @Published var field        = [[Ball?]]()
+class ColorLinesViewModel<FigureType: Figure>: Game {
+    @Published var field        = [[FigureType?]]()
     @Published var score: Int   = 0
     
+    var freeCells               = Set<Point>()
     let maxX                    = 9
     let maxY                    = 9
     let newFigureAmt            = 3
     
+    init() {
+        self.startNewGame()
+    }
+    
     func startNewGame() {
-        // TODO implement game initialization
+        self.freeCells.removeAll()
+        self.score = 0
+        self.field.removeAll()
+        
+        for i in 0..<self.maxX {
+            self.field.append([])
+            for j in 0..<self.maxY {
+                self.field[i].append(nil)
+                self.freeCells.insert(Point(x: j, y: i))
+            }
+        }
+        addRandomFigures(qty: self.newFigureAmt)
     }
     
     func moveFigure(from: Point, to: Point) -> Bool {
-        // TODO implement moving logic
-        true
+        if from == to || !self.freeCells.contains(to) {
+            return false
+        }
+        
+        // TODO implement finding paths logic
+        return true
     }
     
     func changeScore(points: Int) {
-        // TODO implement scoring logic
+        // TODO Implement score changing
     }
     
     func addRandomFigures(qty: Int) {
+        let endRange = self.freeCells.count < qty ? freeCells.count : qty
         
+        for _ in 0..<endRange {
+            if let rndPoint = self.freeCells.randomElement() {
+                self.field[rndPoint.y][rndPoint.x] = Ball(color: figureColors.randomElement() ?? .red) as? FigureType
+                
+                if self.field[rndPoint.y][rndPoint.x] != nil {
+                    self.freeCells.remove(rndPoint)
+                }
+            }
+        }
     }
     
-    func removeFigures(figures: [Point]) {
-        
+    func removeFigures(cells: [Point]) {
+        cells.forEach {
+            self.field[$0.y][$0.x] = nil
+            self.freeCells.insert($0)
+        }
     }
 }

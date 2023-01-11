@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct GameFieldView: View {
-    @ObservedObject var colorLinesViewModel: ColorLinesViewModel
+    @ObservedObject var colorLinesViewModel: ColorLinesViewModel<Ball>
     
     var body: some View {
-        Grid {
+        Grid(horizontalSpacing: 0, verticalSpacing: 0) {
             ForEach(0..<colorLinesViewModel.field.count) { row in
                 GridRow {
-                    ForEach(0..<colorLinesViewModel.field[0].count) { col in
-                        
+                    ForEach(0..<colorLinesViewModel.field[row].count) { col in
+                        if let figure = colorLinesViewModel.field[col][row] {
+                            BallView(figure: figure)
+                        } else {
+                            Color.clear
+                        }
                     }
+                    .border(.gray, width: 0.5)
                 }
             }
         }
         .aspectRatio(1, contentMode: .fit)
-        .border(.black, width: 1)
+        .border(.gray, width: 1)
     }
 }
 
 struct GameFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        GameFieldView(colorLinesViewModel: ColorLinesViewModel())
+        GameFieldView(colorLinesViewModel: ColorLinesViewModel<Ball>())
     }
 }

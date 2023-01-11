@@ -10,9 +10,9 @@ import SwiftUI
 let figureColors: [Color] = [.red, .green, .blue, .yellow, .brown, .purple, .cyan]
 
 protocol Figure {
-    var color: Color { get set }
+    var color: Color { get }
 }
 
 struct Ball: Figure {
-    var color: Color
+    let color: Color
 }
