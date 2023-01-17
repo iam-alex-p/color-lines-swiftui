@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct BallView: View {
-    var figure: Ball
+    var figure: Ball?
+    
     var body: some View {
         Circle()
-            .fill(figure.color)
+            .fill(figure != nil ? figure!.color : Color(UIColor.systemBackground))
     }
 }
 
 struct BallView_Previews: PreviewProvider {
     static var previews: some View {
-        BallView(figure: Ball(color: .red))
+        BallView(figure: Ball(color: .green))
     }
 }

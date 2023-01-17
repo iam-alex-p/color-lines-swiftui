@@ -12,13 +12,17 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            Text("Score: \(colorLinesViewModel.score)")
+            Text(!colorLinesViewModel.isGameOver ? "Score: \(colorLinesViewModel.score)": "Game Over! You score: \(colorLinesViewModel.score)")
+                .font(.title)
+                .foregroundColor(!colorLinesViewModel.isGameOver ? .primary : .accentColor)
             Spacer()
             GameFieldView(colorLinesViewModel: colorLinesViewModel)
             Spacer()
             Button("New Game") {
                 colorLinesViewModel.startNewGame()
             }
+            .buttonStyle(.borderedProminent)
+            .controlSize(.large)
         }
         .padding()
     }

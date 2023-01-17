@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let figureColors: [Color] = [.red, .green, .blue, .yellow, .brown, .purple, .cyan]
+let figureColors: [Color] = [.green, .red, .blue, .yellow, .brown, .purple, .mint]
 
 protocol Figure {
     var color: Color { get }
