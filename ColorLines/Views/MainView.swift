@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  ColorLines
 //
 //  Created by Aleksei Pokolev on 1/9/23.
@@ -8,21 +8,19 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var colorLinesViewModel = ColorLinesViewModel<Ball>()
+    @StateObject var viewModel = ColorLinesViewModel<Ball>()
     
     var body: some View {
         VStack {
-            Text(!colorLinesViewModel.isGameOver ? "Score: \(colorLinesViewModel.score)": "Game Over! You score: \(colorLinesViewModel.score)")
+            Text(!viewModel.isGameOver() ? "Score: \(viewModel.gameModel.score)": "Game Over! You score: \(viewModel.gameModel.score)")
                 .font(.title)
-                .foregroundColor(!colorLinesViewModel.isGameOver ? .primary : .accentColor)
+                .foregroundColor(!viewModel.isGameOver() ? .primary : .accentColor)
             Spacer()
-            GameFieldView(colorLinesViewModel: colorLinesViewModel)
+            NextFiguresView(figures: viewModel.gameModel.nextFigures)
             Spacer()
-            Button("New Game") {
-                colorLinesViewModel.startNewGame()
-            }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
+            GameFieldView(viewModel: viewModel)
+            Spacer()
+            GameButtonsView(viewModel: viewModel)
         }
         .padding()
     }
