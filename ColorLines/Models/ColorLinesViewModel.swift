@@ -7,109 +7,108 @@
 
 import SwiftUI
 
-struct Point: Hashable {
-    let x: Int
-    let y: Int
-}
-
 protocol Game: ObservableObject {
     associatedtype FigureType: Figure
     
-    var field: [[FigureType?]] { get set }
-    var freeCells: Set<Point> { get set }
-    var maxX: Int { get }
-    var maxY: Int { get }
-    var newFigureAmt: Int { get }
-    var minFigureSeq: Int { get }
-    var score: Int { get set }
-    var isGameOver: Bool { get set }
-    
     func startNewGame()
     func moveFigure(from: Point, to: Point) -> Bool
+    func reduceFigures(from: Point)
     func changeScore(points: Int)
+    func generateRandomFigures(qty: Int)
+    func revertFailedMove()
     func addRandomFigures(qty: Int) -> [Point]
     func removeFigures(cells: [Point])
-    func isEmpty(point: Point) -> Bool
+    func isEmptyCell(point: Point) -> Bool
+    func isGameOver() -> Bool
 }
 
 class ColorLinesViewModel<FigureType: Figure>: Game {
-    @Published var field        = [[FigureType?]]()
-    @Published var score        = 0
-    @Published var isGameOver   = false
-    
-    var freeCells               = Set<Point>()
-    let maxX                    = 9
-    let maxY                    = 9
-    let newFigureAmt            = 3
-    let minFigureSeq            = 5
+    @Published private(set) var gameModel = GameModel<FigureType>()
     
     init() {
         self.startNewGame()
     }
     
     func startNewGame() {
-        self.freeCells.removeAll()
-        self.isGameOver = false
-        self.score = 0
-        self.field.removeAll()
+        gameModel = GameModel<FigureType>()
         
-        for i in 0..<self.maxX {
-            self.field.append([])
-            for j in 0..<self.maxY {
-                self.field[i].append(nil)
-                self.freeCells.insert(Point(x: i, y: j))
+        for i in 0..<gameModel.maxX {
+            gameModel.field.append([])
+            for j in 0..<gameModel.maxY {
+                gameModel.field[i].append(nil)
+                gameModel.freeCells.insert(Point(x: i, y: j))
             }
         }
-        self.addRandomFigures(qty: self.newFigureAmt)
+        
+        self.generateRandomFigures(qty: gameModel.newFigureAmt)
+        self.addRandomFigures(qty: gameModel.newFigureAmt)
+        self.generateRandomFigures(qty: gameModel.newFigureAmt)
     }
     
     func moveFigure(from: Point, to: Point) -> Bool {
-        if from == to || self.freeCells.contains(from) || !self.freeCells.contains(to) || !self.checkPath(from: from, to: to) {
+        if from == to || gameModel.freeCells.contains(from) || !gameModel.freeCells.contains(to) || !self.checkPath(from: from, to: to) {
             return false
         }
         
-        self.field[to.x][to.y] = self.field[from.x][from.y]
-        self.field[from.x][from.y] = nil
+        gameModel.prevFieldState = gameModel.field
+        gameModel.prevFreeCells = gameModel.freeCells
         
-        self.freeCells.remove(to)
-        self.freeCells.insert(from)
+        gameModel.field[to.x][to.y] = gameModel.field[from.x][from.y]
+        gameModel.field[from.x][from.y] = nil
         
-        let lines = reduceFigures(searchPoints: [to]).filter { $0.count >= minFigureSeq }
-        
-        if lines.isEmpty {
-            let points = self.addRandomFigures(qty: self.newFigureAmt)
-            
-            reduceFigures(searchPoints: points).filter { $0.count >= minFigureSeq }
-                .forEach {
-                    removeFigures(cells: $0)
-                    changeScore(points: $0.count * 2)
-                }
-            
-            self.isGameOver = self.freeCells.isEmpty
-        } else {
-            lines.forEach {
-                removeFigures(cells: $0)
-                changeScore(points: $0.count * 2)
-            }
-        }
-        
+        gameModel.freeCells.remove(to)
+        gameModel.freeCells.insert(from)
         return true
     }
     
+    func reduceFigures(from: Point) {
+        var lines = buildReduceLines(searchPoints: [from]).filter { $0.count >= gameModel.minFigureSeq }
+        
+        if lines.isEmpty {
+            gameModel.isFailedMove = true
+            lines = buildReduceLines(searchPoints: self.addRandomFigures(qty: gameModel.newFigureAmt)).filter { $0.count >= gameModel.minFigureSeq }
+            
+            gameModel.isGameOver = gameModel.freeCells.isEmpty
+            self.generateRandomFigures(qty: gameModel.newFigureAmt)
+        } else {
+            gameModel.isFailedMove = false
+        }
+        
+        lines.forEach {
+            removeFigures(cells: $0)
+            changeScore(points: $0.count * 2)
+        }
+    }
+    
     func changeScore(points: Int) {
-        self.score += points
+        gameModel.score += points
+    }
+    
+    func generateRandomFigures(qty: Int) {
+        gameModel.nextFigures.removeAll()
+        for _ in 0..<qty {
+            gameModel.nextFigures.append(Ball(color: figureColors.randomElement() ?? .red) as? FigureType)
+        }
+    }
+    
+    func revertFailedMove() {
+        gameModel.field = gameModel.prevFieldState
+        gameModel.freeCells = gameModel.prevFreeCells
+        
+        self.generateRandomFigures(qty: gameModel.newFigureAmt)
+        gameModel.isFailedMove.toggle()
     }
     
     func addRandomFigures(qty: Int) -> [Point] {
         var points = [Point]()
-        let endRange = self.freeCells.count < qty ? freeCells.count : qty
+        let endRange = gameModel.freeCells.count < qty ? gameModel.freeCells.count : qty
         
-        for _ in 0..<endRange {
-            if let rndPoint = self.freeCells.randomElement() {
-                self.field[rndPoint.x][rndPoint.y] = Ball(color: figureColors.randomElement() ?? .red) as? FigureType
+        for i in 0..<endRange {
+            if let rndPoint = gameModel.freeCells.randomElement() {
+                gameModel.field[rndPoint.x][rndPoint.y] = gameModel.nextFigures[i]
                 
-                if self.field[rndPoint.x][rndPoint.y] != nil {
-                    self.freeCells.remove(rndPoint)
+                if gameModel.field[rndPoint.x][rndPoint.y] != nil {
+                    gameModel.freeCells.remove(rndPoint)
                     points.append(rndPoint)
                 }
             }
@@ -119,21 +118,25 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     
     func removeFigures(cells: [Point]) {
         cells.forEach {
-            self.field[$0.x][$0.y] = nil
-            self.freeCells.insert($0)
+            gameModel.field[$0.x][$0.y] = nil
+            gameModel.freeCells.insert($0)
         }
     }
     
-    func isEmpty(point: Point) -> Bool {
-        self.freeCells.contains(point)
+    func isEmptyCell(point: Point) -> Bool {
+        gameModel.freeCells.contains(point)
+    }
+    
+    func isGameOver() -> Bool {
+        gameModel.freeCells.isEmpty
     }
 }
 
 extension ColorLinesViewModel {
     func checkPath(from: Point, to: Point) -> Bool {
-        var visited = [[Bool]](repeating: [Bool](repeating: false, count: self.field[0].count), count: self.field.count)
+        var visited = [[Bool]](repeating: [Bool](repeating: false, count: gameModel.field[0].count), count: gameModel.field.count)
         
-        var matrix = self.field
+        var matrix = gameModel.field
         matrix[from.x][from.y] = nil
         matrix[to.x][to.y] = nil
         
@@ -143,7 +146,7 @@ extension ColorLinesViewModel {
     }
     
     private func buildPath(_ matrix: [[FigureType?]], _ i: Int, _ j: Int, _ visited: inout [[Bool]]) {
-        if (i < 0 || i >= maxX || j < 0 || j >= maxY || matrix[i][j] != nil || visited[i][j]) {
+        if (i < 0 || i >= gameModel.maxX || j < 0 || j >= gameModel.maxY || matrix[i][j] != nil || visited[i][j]) {
             return
         }
         
@@ -154,8 +157,8 @@ extension ColorLinesViewModel {
         buildPath(matrix, i, j+1, &visited)
     }
     
-    func reduceFigures(searchPoints: [Point]) -> [[Point]] {
-        let colors = self.field.map { figures in
+    func buildReduceLines(searchPoints: [Point]) -> [[Point]] {
+        let colors = gameModel.field.map { figures in
             figures.map { figure in
                 figure?.color != nil ? figure!.color : nil
             }
@@ -189,7 +192,7 @@ extension ColorLinesViewModel {
             var cd = j + y[dir]
             
             repeat {
-                if rd >= maxX || rd < 0 || cd >= maxY || cd < 0 {
+                if rd >= gameModel.maxX || rd < 0 || cd >= gameModel.maxY || cd < 0 {
                     break
                 }
                 
@@ -201,7 +204,7 @@ extension ColorLinesViewModel {
                 
                 rd += x[dir]
                 cd += y[dir]
-            } while (rd < maxX || rd > 0 || cd < maxY || cd > 0)
+            } while (rd < gameModel.maxX || rd > 0 || cd < gameModel.maxY || cd > 0)
         }
         
         return lines

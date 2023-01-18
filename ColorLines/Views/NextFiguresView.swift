@@ -1,0 +1,34 @@
+//
+//  NextFiguresView.swift
+//  ColorLines
+//
+//  Created by Aleksei Pokolev on 1/17/23.
+//
+
+import SwiftUI
+
+struct NextFiguresView: View {
+    var figures: [Ball?]
+
+    var body: some View {
+        Grid {
+            GridRow {
+                ForEach(0..<figures.count) {
+                    BallView(figure: figures[$0])
+                }
+            }
+        }
+        .aspectRatio(0.3, contentMode: .fit)
+    }
+}
+
+struct NextFiguresView_Previews: PreviewProvider {
+    private static let figures = [Ball](arrayLiteral:
+                                            Ball(color: .red),
+                                        Ball(color: .yellow),
+                                        Ball(color: .green)
+    )
+    static var previews: some View {
+        NextFiguresView(figures: figures)
+    }
+}

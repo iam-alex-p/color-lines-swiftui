@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		BF8B7260296E5CBA00809784 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8B725F296E5CBA00809784 /* BallView.swift */; };
+		BFA3E86529777C3A001FEE8F /* GridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3E86429777C3A001FEE8F /* GridCellView.swift */; };
+		BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBCAAB82977088D00B154C5 /* GameModel.swift */; };
+		BFBCAABB2977143200B154C5 /* NextFiguresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBCAABA2977143200B154C5 /* NextFiguresView.swift */; };
+		BFBCAABD297729FB00B154C5 /* GameButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */; };
 		BFE16961296D000000AFAC8C /* FigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16960296D000000AFAC8C /* FigureModel.swift */; };
 		BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */; };
 		BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16966296D0BA900AFAC8C /* GameFieldView.swift */; };
@@ -19,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		BF8B725F296E5CBA00809784 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		BFA3E86429777C3A001FEE8F /* GridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCellView.swift; sourceTree = "<group>"; };
+		BFBCAAB82977088D00B154C5 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		BFBCAABA2977143200B154C5 /* NextFiguresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextFiguresView.swift; sourceTree = "<group>"; };
+		BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButtonsView.swift; sourceTree = "<group>"; };
 		BFE16960296D000000AFAC8C /* FigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureModel.swift; sourceTree = "<group>"; };
 		BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLinesViewModel.swift; sourceTree = "<group>"; };
 		BFE16966296D0BA900AFAC8C /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
@@ -82,6 +90,9 @@
 				BFE6A5EE296CFA4700140077 /* MainView.swift */,
 				BFE16966296D0BA900AFAC8C /* GameFieldView.swift */,
 				BF8B725F296E5CBA00809784 /* BallView.swift */,
+				BFBCAABA2977143200B154C5 /* NextFiguresView.swift */,
+				BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */,
+				BFA3E86429777C3A001FEE8F /* GridCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -91,6 +102,7 @@
 			children = (
 				BFE16960296D000000AFAC8C /* FigureModel.swift */,
 				BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */,
+				BFBCAAB82977088D00B154C5 /* GameModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -170,7 +182,11 @@
 				BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */,
 				BF8B7260296E5CBA00809784 /* BallView.swift in Sources */,
 				BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */,
+				BFBCAABD297729FB00B154C5 /* GameButtonsView.swift in Sources */,
+				BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */,
 				BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */,
+				BFA3E86529777C3A001FEE8F /* GridCellView.swift in Sources */,
+				BFBCAABB2977143200B154C5 /* NextFiguresView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
