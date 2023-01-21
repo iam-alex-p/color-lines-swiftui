@@ -26,7 +26,7 @@ struct GameFieldView: View {
                                     if let initPoint = selection {
                                         let isMoved = viewModel.moveFigure(from: initPoint, to: Point(x: col, y: row))
                                         if (isMoved) {
-                                            withAnimation(.spring(response: 0.6, dampingFraction: 0.9, blendDuration: 0.75)) {
+                                            withAnimation(.easeIn(duration: 0.3)) {
                                                 viewModel.reduceFigures(from: Point(x: col, y: row))
                                             }
                                             selection = nil
@@ -37,9 +37,9 @@ struct GameFieldView: View {
                     }
                 }
             }
-            .border(.gray, width: 0.5)
+            .border(.gray, width: 0.4)
         }
-        .border(.gray, width: 1)
+        .border(.gray, width: 0.8)
     }
 }
 

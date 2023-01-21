@@ -14,12 +14,10 @@ struct Point: Hashable {
 
 struct GameModel<FigureType: Figure> {
     var field           = [[FigureType?]]()
-    var prevFieldState  = [[FigureType?]]()
     var freeCells       = Set<Point>()
-    var prevFreeCells   = Set<Point>()
     var score           = 0
-    var nextFigures     = [FigureType?]()
-    var isFailedMove    = false
+    var nextFigures     = [FigureType]()
+    var isRevertAllowed    = false
     var isGameOver      = false
     
     let maxX            = 9

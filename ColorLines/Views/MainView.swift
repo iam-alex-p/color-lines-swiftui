@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.horizontalSizeClass) var hSizeClass
     @StateObject var viewModel = ColorLinesViewModel<Ball>()
     
     var body: some View {
         VStack {
             Text(!viewModel.isGameOver() ? "Score: \(viewModel.gameModel.score)": "Game Over! You score: \(viewModel.gameModel.score)")
-                .font(.title)
+                .font(hSizeClass == .regular ? .largeTitle : .title3)
                 .foregroundColor(!viewModel.isGameOver() ? .primary : .accentColor)
             Spacer()
             NextFiguresView(figures: viewModel.gameModel.nextFigures)
-            Spacer()
+                .padding()
             GameFieldView(viewModel: viewModel)
-            Spacer()
             GameButtonsView(viewModel: viewModel)
+                .padding(.top, 55)
+            Spacer()
         }
         .padding()
     }

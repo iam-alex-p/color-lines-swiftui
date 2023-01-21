@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NextFiguresView: View {
     var figures: [Ball?]
-
+    
     var body: some View {
         Grid {
             GridRow {

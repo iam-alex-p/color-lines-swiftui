@@ -8,26 +8,28 @@
 import SwiftUI
 
 struct GameButtonsView: View {
+    @Environment(\.horizontalSizeClass) var hSizeClass
     @ObservedObject var viewModel: ColorLinesViewModel<Ball>
     
     var body: some View {
         HStack {
             Button("New Game") {
-                withAnimation(.easeInOut(duration: 0.3).repeatCount(2)) {
+                withAnimation(.easeInOut(duration: 0.2).repeatCount(2)) {
                     viewModel.startNewGame()
                 }
             }
             Spacer()
             Button("Revert Move") {
-                withAnimation(.easeInOut(duration: 0.4)) {
+                withAnimation(.easeInOut(duration: 0.3)) {
                     viewModel.revertFailedMove()
                 }
             }
-            .disabled(!viewModel.gameModel.isFailedMove || viewModel.isGameOver())
+            .disabled(!viewModel.gameModel.isRevertAllowed || viewModel.isGameOver())
         }
         .buttonStyle(.borderedProminent)
-        .controlSize(.large)
+        .controlSize(hSizeClass == .regular ? .large : .regular)
     }
+    
 }
 
 struct GameButtonsView_Previews: PreviewProvider {

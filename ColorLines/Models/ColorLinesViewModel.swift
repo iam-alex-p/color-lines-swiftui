@@ -13,7 +13,7 @@ protocol Game: ObservableObject {
     func startNewGame()
     func moveFigure(from: Point, to: Point) -> Bool
     func reduceFigures(from: Point)
-    func changeScore(points: Int)
+    func increaseScore(points: Int)
     func generateRandomFigures(qty: Int)
     func revertFailedMove()
     func addRandomFigures(qty: Int) -> [Point]
@@ -24,6 +24,7 @@ protocol Game: ObservableObject {
 
 class ColorLinesViewModel<FigureType: Figure>: Game {
     @Published private(set) var gameModel = GameModel<FigureType>()
+    var prevGameModel: GameModel<FigureType> = GameModel<FigureType>()
     
     init() {
         self.startNewGame()
@@ -31,6 +32,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     
     func startNewGame() {
         gameModel = GameModel<FigureType>()
+        prevGameModel = gameModel
         
         for i in 0..<gameModel.maxX {
             gameModel.field.append([])
@@ -50,8 +52,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
             return false
         }
         
-        gameModel.prevFieldState = gameModel.field
-        gameModel.prevFreeCells = gameModel.freeCells
+        prevGameModel = gameModel
         
         gameModel.field[to.x][to.y] = gameModel.field[from.x][from.y]
         gameModel.field[from.x][from.y] = nil
@@ -65,38 +66,36 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         var lines = buildReduceLines(searchPoints: [from]).filter { $0.count >= gameModel.minFigureSeq }
         
         if lines.isEmpty {
-            gameModel.isFailedMove = true
+            gameModel.isRevertAllowed = true
             lines = buildReduceLines(searchPoints: self.addRandomFigures(qty: gameModel.newFigureAmt)).filter { $0.count >= gameModel.minFigureSeq }
             
             gameModel.isGameOver = gameModel.freeCells.isEmpty
             self.generateRandomFigures(qty: gameModel.newFigureAmt)
         } else {
-            gameModel.isFailedMove = false
+            gameModel.isRevertAllowed = false
         }
         
         lines.forEach {
             removeFigures(cells: $0)
-            changeScore(points: $0.count * 2)
+            increaseScore(points: ($0.count - gameModel.minFigureSeq + 1) * $0.count)
         }
     }
     
-    func changeScore(points: Int) {
+    func increaseScore(points: Int) {
         gameModel.score += points
     }
     
     func generateRandomFigures(qty: Int) {
         gameModel.nextFigures.removeAll()
         for _ in 0..<qty {
-            gameModel.nextFigures.append(Ball(color: figureColors.randomElement() ?? .red) as? FigureType)
+            gameModel.nextFigures.append(Ball(color: figureColors.randomElement() ?? .red) as! FigureType)
         }
     }
     
     func revertFailedMove() {
-        gameModel.field = gameModel.prevFieldState
-        gameModel.freeCells = gameModel.prevFreeCells
-        
+        gameModel = prevGameModel
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
-        gameModel.isFailedMove.toggle()
+        gameModel.isRevertAllowed = false
     }
     
     func addRandomFigures(qty: Int) -> [Point] {
