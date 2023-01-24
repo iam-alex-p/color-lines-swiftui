@@ -19,6 +19,7 @@
 		BFE6A5EF296CFA4700140077 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6A5EE296CFA4700140077 /* MainView.swift */; };
 		BFE6A5F1296CFA4800140077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE6A5F0296CFA4800140077 /* Assets.xcassets */; };
 		BFE6A5F4296CFA4800140077 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE6A5F3296CFA4800140077 /* Preview Assets.xcassets */; };
+		BFF9A042297F7D1200835F0E /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF9A041297F7D1200835F0E /* Consts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		BFE6A5EE296CFA4700140077 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BFE6A5F0296CFA4800140077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFE6A5F3296CFA4800140077 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BFF9A041297F7D1200835F0E /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				BF6F7BA62979F5F3009DBB79 /* Info.plist */,
+				BFF9A040297F7CF500835F0E /* Helpers */,
 				BFE6A5FB296CFAF300140077 /* Models */,
 				BFE6A5FA296CFAE400140077 /* Views */,
 				BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */,
@@ -107,6 +110,14 @@
 				BFBCAAB82977088D00B154C5 /* GameModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BFF9A040297F7CF500835F0E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BFF9A041297F7D1200835F0E /* Consts.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,6 +198,7 @@
 				BFBCAABD297729FB00B154C5 /* GameButtonsView.swift in Sources */,
 				BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */,
 				BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */,
+				BFF9A042297F7D1200835F0E /* Consts.swift in Sources */,
 				BFA3E86529777C3A001FEE8F /* GridCellView.swift in Sources */,
 				BFBCAABB2977143200B154C5 /* NextFiguresView.swift in Sources */,
 			);

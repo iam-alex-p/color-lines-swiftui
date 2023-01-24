@@ -34,17 +34,13 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         gameModel = GameModel<FigureType>()
         prevGameModel = gameModel
         
-        for i in 0..<gameModel.maxX {
-            gameModel.field.append([])
-            for j in 0..<gameModel.maxY {
-                gameModel.field[i].append(nil)
-                gameModel.freeCells.insert(Point(x: i, y: j))
-            }
-        }
+        gameModel.field = [[FigureType?]](repeating: [FigureType?](repeating: nil, count: gameModel.fieldSize), count: gameModel.fieldSize)
         
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         self.addRandomFigures(qty: gameModel.newFigureAmt)
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
+        
+        gameModel.moveComment = MoveComments.startGame.randomElement()!
     }
     
     func moveFigure(from: Point, to: Point) -> Bool {
@@ -56,9 +52,6 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         
         gameModel.field[to.x][to.y] = gameModel.field[from.x][from.y]
         gameModel.field[from.x][from.y] = nil
-        
-        gameModel.freeCells.remove(to)
-        gameModel.freeCells.insert(from)
         return true
     }
     
@@ -69,7 +62,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
             gameModel.isRevertAllowed = true
             lines = buildReduceLines(searchPoints: self.addRandomFigures(qty: gameModel.newFigureAmt)).filter { $0.count >= gameModel.minFigureSeq }
             
-            gameModel.isGameOver = gameModel.freeCells.isEmpty
+            gameModel.moveComment = isGameOver() ? MoveComments.gameOver.randomElement()! : MoveComments.missedMoves.randomElement()!
             self.generateRandomFigures(qty: gameModel.newFigureAmt)
         } else {
             gameModel.isRevertAllowed = false
@@ -77,7 +70,10 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         
         lines.forEach {
             removeFigures(cells: $0)
-            increaseScore(points: ($0.count - gameModel.minFigureSeq + 1) * $0.count)
+            let points = rewardFormula(lineLength: $0.count)
+            increaseScore(points: points)
+            
+            gameModel.moveComment = String(format: MoveComments.successfulMoves.randomElement()!, String(lines.first!.count), String(points))
         }
     }
     
@@ -96,6 +92,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         gameModel = prevGameModel
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         gameModel.isRevertAllowed = false
+        gameModel.moveComment = MoveComments.revertedMoves.randomElement()!
     }
     
     func addRandomFigures(qty: Int) -> [Point] {
@@ -107,7 +104,6 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
                 gameModel.field[rndPoint.x][rndPoint.y] = gameModel.nextFigures[i]
                 
                 if gameModel.field[rndPoint.x][rndPoint.y] != nil {
-                    gameModel.freeCells.remove(rndPoint)
                     points.append(rndPoint)
                 }
             }
@@ -118,7 +114,6 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     func removeFigures(cells: [Point]) {
         cells.forEach {
             gameModel.field[$0.x][$0.y] = nil
-            gameModel.freeCells.insert($0)
         }
     }
     
@@ -131,7 +126,11 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     }
 }
 
-extension ColorLinesViewModel {
+private extension ColorLinesViewModel {
+    func rewardFormula(lineLength: Int) -> Int {
+        (lineLength - gameModel.minFigureSeq + 1) * lineLength
+    }
+    
     func checkPath(from: Point, to: Point) -> Bool {
         var visited = [[Bool]](repeating: [Bool](repeating: false, count: gameModel.field[0].count), count: gameModel.field.count)
         
@@ -144,8 +143,8 @@ extension ColorLinesViewModel {
         return visited[to.x][to.y]
     }
     
-    private func buildPath(_ matrix: [[FigureType?]], _ i: Int, _ j: Int, _ visited: inout [[Bool]]) {
-        if (i < 0 || i >= gameModel.maxX || j < 0 || j >= gameModel.maxY || matrix[i][j] != nil || visited[i][j]) {
+    func buildPath(_ matrix: [[FigureType?]], _ i: Int, _ j: Int, _ visited: inout [[Bool]]) {
+        if (i < 0 || i >= gameModel.fieldSize || j < 0 || j >= gameModel.fieldSize || matrix[i][j] != nil || visited[i][j]) {
             return
         }
         
@@ -175,7 +174,7 @@ extension ColorLinesViewModel {
         return lines
     }
     
-    private func findSequences(_ matrix: [[Color?]], _ i: Int, _ j: Int, _ searchColor: Color) -> [[Point]] {
+    func findSequences(_ matrix: [[Color?]], _ i: Int, _ j: Int, _ searchColor: Color) -> [[Point]] {
         var lines = [[Point]]()
         
         let x = [-1, 1, 1, -1, 1, -1, 0, 0]
@@ -191,7 +190,7 @@ extension ColorLinesViewModel {
             var cd = j + y[dir]
             
             repeat {
-                if rd >= gameModel.maxX || rd < 0 || cd >= gameModel.maxY || cd < 0 {
+                if rd >= gameModel.fieldSize || rd < 0 || cd >= gameModel.fieldSize || cd < 0 {
                     break
                 }
                 
@@ -203,7 +202,7 @@ extension ColorLinesViewModel {
                 
                 rd += x[dir]
                 cd += y[dir]
-            } while (rd < gameModel.maxX || rd > 0 || cd < gameModel.maxY || cd > 0)
+            } while (rd < gameModel.fieldSize || rd > 0 || cd < gameModel.fieldSize || cd > 0)
         }
         
         return lines
