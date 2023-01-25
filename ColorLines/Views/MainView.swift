@@ -13,9 +13,9 @@ struct MainView: View {
     
     var body: some View {
         VStack {
-            Text(!viewModel.isGameOver() ? "Score: \(viewModel.gameModel.score)": "Game Over! You score: \(viewModel.gameModel.score)")
+            Text(!viewModel.isGameOver ? "Score: \(viewModel.gameModel.score)": "Game Over! You score: \(viewModel.gameModel.score)")
                 .font(hSizeClass == .regular ? .largeTitle : .title3)
-                .foregroundColor(!viewModel.isGameOver() ? .primary : .accentColor)
+                .foregroundColor(!viewModel.isGameOver ? .primary : .accentColor)
                 .fontWeight(.bold)
                 .padding(10)
             Spacer()

@@ -17,9 +17,9 @@ protocol Game: ObservableObject {
     func generateRandomFigures(qty: Int)
     func revertFailedMove()
     func addRandomFigures(qty: Int) -> [Point]
-    func removeFigures(cells: [Point])
+    func removeFigures(points: [Point])
     func isEmptyCell(point: Point) -> Bool
-    func isGameOver() -> Bool
+    var isGameOver: Bool { get }
 }
 
 class ColorLinesViewModel<FigureType: Figure>: Game {
@@ -41,12 +41,16 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         
         gameModel.moveComment = MoveComments.startGame.randomElement()!
+        SoundManager.playSound(.startGame)
     }
     
     func moveFigure(from: Point, to: Point) -> Bool {
-        if from == to || gameModel.freeCells.contains(from) || !gameModel.freeCells.contains(to) || !self.checkPath(from: from, to: to) {
+        if !self.checkPath(from: from, to: to) {
+            SoundManager.playSound(.failedMove)
             return false
         }
+        
+        SoundManager.playSound(.successfulMove)
         
         prevGameModel = gameModel
         
@@ -62,18 +66,25 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
             gameModel.isRevertAllowed = true
             lines = buildReduceLines(searchPoints: self.addRandomFigures(qty: gameModel.newFigureAmt)).filter { $0.count >= gameModel.minFigureSeq }
             
-            gameModel.moveComment = isGameOver() ? MoveComments.gameOver.randomElement()! : MoveComments.missedMoves.randomElement()!
+            if isGameOver {
+                SoundManager.playSound(.gameOver)
+                gameModel.moveComment = MoveComments.gameOver.randomElement()!
+            } else {
+                gameModel.moveComment = MoveComments.missedMoves.randomElement()!
+            }
+            
             self.generateRandomFigures(qty: gameModel.newFigureAmt)
         } else {
+            SoundManager.playSound(.ballReduced)
             gameModel.isRevertAllowed = false
         }
         
         lines.forEach {
-            removeFigures(cells: $0)
+            removeFigures(points: $0)
             let points = rewardFormula(lineLength: $0.count)
             increaseScore(points: points)
             
-            gameModel.moveComment = String(format: MoveComments.successfulMoves.randomElement()!, String(lines.first!.count), String(points))
+            gameModel.moveComment = String(format: MoveComments.successfulMoves.randomElement()!, String($0.count), String(points))
         }
     }
     
@@ -89,6 +100,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     }
     
     func revertFailedMove() {
+        SoundManager.playSound(.revertMove)
         gameModel = prevGameModel
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         gameModel.isRevertAllowed = false
@@ -111,8 +123,8 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         return points
     }
     
-    func removeFigures(cells: [Point]) {
-        cells.forEach {
+    func removeFigures(points: [Point]) {
+        points.forEach {
             gameModel.field[$0.x][$0.y] = nil
         }
     }
@@ -121,7 +133,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         gameModel.freeCells.contains(point)
     }
     
-    func isGameOver() -> Bool {
+    var isGameOver: Bool {
         gameModel.freeCells.isEmpty
     }
 }
@@ -132,6 +144,10 @@ private extension ColorLinesViewModel {
     }
     
     func checkPath(from: Point, to: Point) -> Bool {
+        if from == to || gameModel.freeCells.contains(from) || !gameModel.freeCells.contains(to) {
+            return false
+        }
+        
         var visited = [[Bool]](repeating: [Bool](repeating: false, count: gameModel.field[0].count), count: gameModel.field.count)
         
         var matrix = gameModel.field
@@ -194,7 +210,7 @@ private extension ColorLinesViewModel {
                     break
                 }
                 
-                guard let mColor = matrix[rd][cd], mColor == searchColor else {
+                guard let color = matrix[rd][cd], color == searchColor else {
                     break
                 }
                 

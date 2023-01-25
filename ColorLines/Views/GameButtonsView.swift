@@ -24,7 +24,7 @@ struct GameButtonsView: View {
                     viewModel.revertFailedMove()
                 }
             }
-            .disabled(!viewModel.gameModel.isRevertAllowed || viewModel.isGameOver())
+            .disabled(!viewModel.gameModel.isRevertAllowed || viewModel.isGameOver)
         }
         .buttonStyle(.borderedProminent)
         .controlSize(hSizeClass == .regular ? .large : .regular)

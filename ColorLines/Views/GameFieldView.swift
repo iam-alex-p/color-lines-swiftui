@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct GameFieldView: View {
     @ObservedObject var viewModel: ColorLinesViewModel<Ball>
@@ -31,6 +32,8 @@ struct GameFieldView: View {
                                             }
                                             selection = nil
                                         }
+                                    } else {
+                                        SoundManager.playSound(.emptyCell)
                                     }
                                 }
                             }

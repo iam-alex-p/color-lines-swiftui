@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF8621482980BE6F00733626 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8621472980BE6F00733626 /* Sound.swift */; };
 		BF8B7260296E5CBA00809784 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8B725F296E5CBA00809784 /* BallView.swift */; };
 		BFA3E86529777C3A001FEE8F /* GridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3E86429777C3A001FEE8F /* GridCellView.swift */; };
 		BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBCAAB82977088D00B154C5 /* GameModel.swift */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		BF6F7BA62979F5F3009DBB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BF8621472980BE6F00733626 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		BF8B725F296E5CBA00809784 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 		BFA3E86429777C3A001FEE8F /* GridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCellView.swift; sourceTree = "<group>"; };
 		BFBCAAB82977088D00B154C5 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				BF6F7BA62979F5F3009DBB79 /* Info.plist */,
-				BFF9A040297F7CF500835F0E /* Helpers */,
+				BFF9A040297F7CF500835F0E /* Utilities */,
 				BFE6A5FB296CFAF300140077 /* Models */,
 				BFE6A5FA296CFAE400140077 /* Views */,
 				BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */,
@@ -112,12 +114,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		BFF9A040297F7CF500835F0E /* Helpers */ = {
+		BFF9A040297F7CF500835F0E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				BF8621472980BE6F00733626 /* Sound.swift */,
 				BFF9A041297F7D1200835F0E /* Consts.swift */,
 			);
-			path = Helpers;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +200,7 @@
 				BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */,
 				BFBCAABD297729FB00B154C5 /* GameButtonsView.swift in Sources */,
 				BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */,
+				BF8621482980BE6F00733626 /* Sound.swift in Sources */,
 				BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */,
 				BFF9A042297F7D1200835F0E /* Consts.swift in Sources */,
 				BFA3E86529777C3A001FEE8F /* GridCellView.swift in Sources */,
