@@ -14,7 +14,7 @@ struct GameButtonsView: View {
     var body: some View {
         HStack {
             Button("New Game") {
-                withAnimation(.easeInOut(duration: 0.2).repeatCount(2)) {
+                withAnimation(.easeInOut(duration: 0.3).repeatCount(5)) {
                     viewModel.startNewGame()
                 }
             }

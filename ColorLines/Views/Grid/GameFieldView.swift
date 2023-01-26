@@ -33,7 +33,7 @@ struct GameFieldView: View {
                                             selection = nil
                                         }
                                     } else {
-                                        SoundManager.playSound(.emptyCell)
+                                        SoundManager.play(.emptyCell)
                                     }
                                 }
                             }

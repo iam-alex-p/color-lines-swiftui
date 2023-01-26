@@ -9,16 +9,16 @@ import AVFoundation
 
 struct SoundManager {
     enum SoundOption: UInt32 {
-        case startGame      = 1004
+        case startGame      = 1335
         case successfulMove = 1057
-        case revertMove     = 1026
-        case emptyCell      = 1015
-        case ballReduced    = 1006
-        case failedMove     = 1016
-        case gameOver       = 1031
+        case revertMove     = 1004
+        case emptyCell      = 1306
+        case ballReduced    = 1022
+        case failedMove     = 1305
+        case gameOver       = 1325
     }
     
-    static func playSound(_ sound: SoundOption) {
+    static func play(_ sound: SoundOption) {
         AudioServicesPlaySystemSound(sound.rawValue)
     }
 }

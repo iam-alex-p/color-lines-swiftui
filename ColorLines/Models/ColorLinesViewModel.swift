@@ -41,16 +41,16 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         
         gameModel.moveComment = MoveComments.startGame.randomElement()!
-        SoundManager.playSound(.startGame)
+        SoundManager.play(.startGame)
     }
     
     func moveFigure(from: Point, to: Point) -> Bool {
         if !self.checkPath(from: from, to: to) {
-            SoundManager.playSound(.failedMove)
+            SoundManager.play(.failedMove)
             return false
         }
         
-        SoundManager.playSound(.successfulMove)
+        SoundManager.play(.successfulMove)
         
         prevGameModel = gameModel
         
@@ -66,8 +66,8 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
             gameModel.isRevertAllowed = true
             lines = buildReduceLines(searchPoints: self.addRandomFigures(qty: gameModel.newFigureAmt)).filter { $0.count >= gameModel.minFigureSeq }
             
-            if isGameOver {
-                SoundManager.playSound(.gameOver)
+            if lines.isEmpty && isGameOver {
+                SoundManager.play(.gameOver)
                 gameModel.moveComment = MoveComments.gameOver.randomElement()!
             } else {
                 gameModel.moveComment = MoveComments.missedMoves.randomElement()!
@@ -75,7 +75,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
             
             self.generateRandomFigures(qty: gameModel.newFigureAmt)
         } else {
-            SoundManager.playSound(.ballReduced)
+            SoundManager.play(.ballReduced)
             gameModel.isRevertAllowed = false
         }
         
@@ -100,7 +100,7 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     }
     
     func revertFailedMove() {
-        SoundManager.playSound(.revertMove)
+        SoundManager.play(.revertMove)
         gameModel = prevGameModel
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         gameModel.isRevertAllowed = false

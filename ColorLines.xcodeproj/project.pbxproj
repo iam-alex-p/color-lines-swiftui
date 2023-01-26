@@ -53,6 +53,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFABFDDA2980DA81004E020A /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				BFA3E86429777C3A001FEE8F /* GridCellView.swift */,
+				BFE16966296D0BA900AFAC8C /* GameFieldView.swift */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
+		BFABFDDB2980DA93004E020A /* Ball */ = {
+			isa = PBXGroup;
+			children = (
+				BFBCAABA2977143200B154C5 /* NextFiguresView.swift */,
+				BF8B725F296E5CBA00809784 /* BallView.swift */,
+			);
+			path = Ball;
+			sourceTree = "<group>";
+		};
+		BFABFDDC2980DAAA004E020A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		BFE6A5E0296CFA4700140077 = {
 			isa = PBXGroup;
 			children = (
@@ -94,12 +120,10 @@
 		BFE6A5FA296CFAE400140077 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BFABFDDC2980DAAA004E020A /* Game */,
+				BFABFDDB2980DA93004E020A /* Ball */,
+				BFABFDDA2980DA81004E020A /* Grid */,
 				BFE6A5EE296CFA4700140077 /* MainView.swift */,
-				BFE16966296D0BA900AFAC8C /* GameFieldView.swift */,
-				BF8B725F296E5CBA00809784 /* BallView.swift */,
-				BFBCAABA2977143200B154C5 /* NextFiguresView.swift */,
-				BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */,
-				BFA3E86429777C3A001FEE8F /* GridCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
