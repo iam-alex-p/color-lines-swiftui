@@ -22,6 +22,9 @@ struct GameFieldView: View {
                                 let selectedPoint = Point(x: col, y: row)
                                 
                                 if (!viewModel.isEmptyCell(point: selectedPoint)) {
+                                    if viewModel.isGameOver {
+                                        SoundManager.play(SoundManager.allSounds.randomElement() ?? SoundManager.SoundOption.failedMove.rawValue)
+                                    }
                                     selection = selectedPoint
                                 } else {
                                     if let initPoint = selection {

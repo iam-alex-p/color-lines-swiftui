@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct ColorLinesApp: App {
+    private let persistenceController = PersistenceController.instance
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+            GameMainView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

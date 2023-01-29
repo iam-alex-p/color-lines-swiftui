@@ -19,7 +19,7 @@ protocol Game: ObservableObject {
     func addRandomFigures(qty: Int) -> [Point]
     func removeFigures(points: [Point])
     func isEmptyCell(point: Point) -> Bool
-    var isGameOver: Bool { get }
+    var isGameOver: Bool { get set }
 }
 
 class ColorLinesViewModel<FigureType: Figure>: Game {
@@ -134,7 +134,12 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
     }
     
     var isGameOver: Bool {
-        gameModel.freeCells.isEmpty
+        get {
+            gameModel.freeCells.isEmpty
+        }
+        set {
+            gameModel.isGameOver = newValue
+        }
     }
 }
 
