@@ -42,8 +42,6 @@ struct GameMainView: View {
                     .fontWeight(.semibold)
                     .tracking(hSizeClass == .regular ? 4 : 2)
                 
-                Spacer()
-                
                 NextFiguresView(figures: viewModel.gameModel.nextFigures)
                     .padding()
                 VStack(alignment: .center) {
@@ -51,14 +49,13 @@ struct GameMainView: View {
                     GameButtonsView(viewModel: viewModel)
                         .padding(.top, 30)
                 }
-                Spacer()
             }
             .toolbar {
                 Button {
                     isSettingsPresent.toggle()
                 } label: {
                     Image(systemName: "gear")
-                        .imageScale(.medium)
+                        .imageScale(hSizeClass == .regular ? .medium : .small)
                 }
                 .buttonStyle(.borderedProminent)
                 .sheet(isPresented: $isSettingsPresent) {
@@ -70,7 +67,9 @@ struct GameMainView: View {
             .onChange(of: viewModel.isGameOver) {
                 if $0 && viewModel.gameModel.score != 0 {
                     let playerName = UserDefaults.standard.string(forKey: "playerName") ?? Misc.emptyPlayerName
-                    self.saveRecord(name: playerName.isEmpty ? Misc.emptyPlayerName : playerName, score: Int16(viewModel.gameModel.score), date: dateFormatter.string(from: Date()))
+                    DispatchQueue.main.async {
+                        self.saveRecord(name: playerName.isEmpty ? Misc.emptyPlayerName : playerName, score: Int16(viewModel.gameModel.score), date: Date())
+                    }
                 }
             }
         }
@@ -78,19 +77,13 @@ struct GameMainView: View {
 }
 
 private extension GameMainView {
-    func saveRecord(name: String, score: Int16, date: String) {
+    func saveRecord(name: String, score: Int16, date: Date) {
         let record = Record(context: viewContext)
         record.name = name
         record.score = score
         record.date = date
         
         PersistenceController.instance.saveContext()
-    }
-    
-    var dateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/YY"
-        return dateFormatter
     }
 }
 

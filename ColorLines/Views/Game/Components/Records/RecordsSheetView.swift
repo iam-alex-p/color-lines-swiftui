@@ -47,8 +47,10 @@ struct RecordsSheetView: View {
                 .disabled(records.isEmpty)
                 .confirmationDialog("Are you sure?", isPresented: $isPresentingConfirm) {
                     Button("Remove all Records?", role: .destructive) {
-                        records.forEach { viewContext.delete($0) }
-                        PersistenceController.instance.saveContext()
+                        DispatchQueue.main.async {
+                            records.forEach { viewContext.delete($0) }
+                            PersistenceController.instance.saveContext()
+                        }
                     }
                 }
             }

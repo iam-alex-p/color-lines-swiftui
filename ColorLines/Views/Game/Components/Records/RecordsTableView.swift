@@ -19,9 +19,9 @@ struct RecordsTableView: View {
     
     var body: some View {
         Table(records) {
-            TableColumn("Player Name") {
+            TableColumn("Name") {
                 if hSizeClass == .compact {
-                    let recordModel = RecordModel(playerName: $0.name ?? Misc.emptyPlayerName, score: String($0.score), date: $0.date ?? "")
+                    let recordModel = RecordModel(playerName: $0.name ?? Misc.emptyPlayerName, score: String($0.score), date: dateFormatter.string(from: $0.date ?? Date()))
                     RecordTableRowView(record: recordModel)
                 } else {
                     Text($0.name ?? Misc.emptyPlayerName)
@@ -31,8 +31,16 @@ struct RecordsTableView: View {
                 Text(String($0.score))
             }
             TableColumn("Date") {
-                Text($0.date ?? "")
+                Text(dateFormatter.string(from: $0.date ?? Date()))
             }
         }
+    }
+}
+
+extension RecordsTableView {
+    var dateFormatter: DateFormatter {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/YY"
+        return dateFormatter
     }
 }

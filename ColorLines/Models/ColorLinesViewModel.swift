@@ -41,7 +41,6 @@ class ColorLinesViewModel<FigureType: Figure>: Game {
         self.generateRandomFigures(qty: gameModel.newFigureAmt)
         
         gameModel.moveComment = MoveComments.startGame.randomElement()!
-        SoundManager.play(.startGame)
     }
     
     func moveFigure(from: Point, to: Point) -> Bool {

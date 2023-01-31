@@ -15,6 +15,7 @@ struct GameButtonsView: View {
     
     var body: some View {
         HStack {
+            Spacer()
             Button(role: .none) {
                 isNewGameConfirmationPresenting.toggle()
             } label: {
@@ -23,6 +24,7 @@ struct GameButtonsView: View {
             .confirmationDialog("Start a New Game?", isPresented: $isNewGameConfirmationPresenting) {
                 Button("Start a New Game?", role: .none) {
                     withAnimation(.easeInOut(duration: 0.3).repeatCount(5)) {
+                        SoundManager.play(.startGame)
                         viewModel.startNewGame()
                     }
                 }
@@ -38,6 +40,7 @@ struct GameButtonsView: View {
                 RecordsSheetView()
             }
             Spacer()
+            
             Button {
                 withAnimation(.easeInOut(duration: 0.3)) {
                     viewModel.revertFailedMove()
@@ -46,12 +49,12 @@ struct GameButtonsView: View {
                 Image(systemName: "arrowshape.turn.up.backward.circle.fill")
             }
             .disabled(!viewModel.gameModel.isRevertAllowed || viewModel.isGameOver)
+            Spacer()
         }
         .buttonStyle(.borderedProminent)
         .cornerRadius(5)
         .controlSize(hSizeClass == .regular ? .large : .regular)
     }
-    
 }
 
 struct GameButtonsView_Previews: PreviewProvider {

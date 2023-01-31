@@ -12,7 +12,7 @@ struct RuleView: View {
     var rule: GameRule
     
     var body: some View {
-        HStack {
+        HStack(alignment: .firstTextBaseline) {
             Image(systemName: rule.symbolName)
                 .foregroundColor(.accentColor)
             VStack {
@@ -38,7 +38,7 @@ struct RuleView: View {
 
 struct RuleView_Previews: PreviewProvider {
     static var previews: some View {
-        let rule = GameRule(symbolName: "🤗", caption: "Test Caption", rule: "Test Rule")
+        let rule = GameRule(symbolName: "move.3d", caption: "Test Caption", rule: "Table with High Scores is available with Player Name from Settings")
         RuleView(rule: rule)
     }
 }

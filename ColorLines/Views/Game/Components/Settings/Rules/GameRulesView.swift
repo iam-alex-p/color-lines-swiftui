@@ -29,18 +29,16 @@ struct GameRulesView: View {
     
     var body: some View {
         ScrollView {
-            VStack {
-                Text("Introducing\nBalls of Lines".uppercased())
-                    .foregroundColor(.accentColor)
-                    .fontWeight(.bold)
-                    .font(hSizeClass == .regular ? .title2 : .title3)
-                    .padding(.bottom, 15)
-                    .multilineTextAlignment(.center)
-                    .tracking(2)
-                
-                ForEach(rules) { rule in
-                    RuleView(rule: rule)
-                }
+            Text("Introducing\nBalls of Lines".uppercased())
+                .foregroundColor(.accentColor)
+                .fontWeight(.bold)
+                .font(hSizeClass == .regular ? .title2 : .title3)
+                .padding(.bottom, 15)
+                .multilineTextAlignment(.center)
+                .tracking(2)
+            
+            ForEach(rules) { rule in
+                RuleView(rule: rule)
             }
         }
         .padding()

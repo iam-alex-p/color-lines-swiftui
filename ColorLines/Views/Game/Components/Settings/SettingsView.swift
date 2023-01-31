@@ -9,8 +9,8 @@ import SwiftUI
 import StoreKit
 
 struct SettingsView: View {
-    @Environment(\.horizontalSizeClass) var hSizeClass
-    @Environment(\.requestReview) var requestReview
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    @Environment(\.requestReview) private var requestReview
     
     @AppStorage("playerName") private var playerName = ""
     @AppStorage("isSoundOn") private var isSoundOn = false
@@ -41,13 +41,13 @@ struct SettingsView: View {
                         }
                     }
                     Section(header: Text("Feedback")) {
-                        HStack {
-                            ShareLink(item: "I'm playing Lines of Balls! Can you beat me at it?\nhttps://apps.apple.com/app/id1667124057")
-                        }
+                        ShareLink(item: "I'm playing Lines of Balls! Can you beat me at it?\nhttps://apps.apple.com/app/id1667124057")
                         HStack {
                             MenuImageView(imageName: "star.square.fill")
-                            Button("Rate in AppStore") {
-                                requestReview()
+                            Button("Rate in App Store") {
+                                DispatchQueue.main.async {
+                                    requestReview()
+                                }
                             }
                         }
                         HStack {
@@ -77,6 +77,6 @@ struct MenuImageView: View {
     
     var body: some View {
         Image(systemName: imageName)
-            .foregroundColor(.primary)
+            .foregroundColor(.accentColor)
     }
 }
