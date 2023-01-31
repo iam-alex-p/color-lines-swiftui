@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF0927FC298388770031F404 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0927FB298388770031F404 /* SettingsView.swift */; };
+		BF3EF1BB2983516A00E17BE4 /* RecordsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF3EF1B92983516A00E17BE4 /* RecordsModel.xcdatamodeld */; };
+		BF7F7A23298393880015AFF8 /* GameRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F7A22298393880015AFF8 /* GameRulesView.swift */; };
+		BF7F7A2629839F580015AFF8 /* RuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7F7A2529839F580015AFF8 /* RuleView.swift */; };
+		BF8344CC2982127700C883DC /* RecordsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8344CB2982127700C883DC /* RecordsSheetView.swift */; };
+		BF8424D62985B41B005B6FAA /* RecordTableRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8424D52985B41B005B6FAA /* RecordTableRowView.swift */; };
+		BF8424DA2985C024005B6FAA /* RecordsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8424D92985C024005B6FAA /* RecordsTableView.swift */; };
 		BF8621482980BE6F00733626 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8621472980BE6F00733626 /* Sound.swift */; };
 		BF8B7260296E5CBA00809784 /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8B725F296E5CBA00809784 /* BallView.swift */; };
+		BF97A407298237E200DC8CA9 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF97A406298237E200DC8CA9 /* PersistenceController.swift */; };
 		BFA3E86529777C3A001FEE8F /* GridCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA3E86429777C3A001FEE8F /* GridCellView.swift */; };
 		BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBCAAB82977088D00B154C5 /* GameModel.swift */; };
 		BFBCAABB2977143200B154C5 /* NextFiguresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBCAABA2977143200B154C5 /* NextFiguresView.swift */; };
@@ -17,16 +25,24 @@
 		BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16962296D00F200AFAC8C /* ColorLinesViewModel.swift */; };
 		BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE16966296D0BA900AFAC8C /* GameFieldView.swift */; };
 		BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */; };
-		BFE6A5EF296CFA4700140077 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6A5EE296CFA4700140077 /* MainView.swift */; };
+		BFE6A5EF296CFA4700140077 /* GameMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6A5EE296CFA4700140077 /* GameMainView.swift */; };
 		BFE6A5F1296CFA4800140077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE6A5F0296CFA4800140077 /* Assets.xcassets */; };
 		BFE6A5F4296CFA4800140077 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFE6A5F3296CFA4800140077 /* Preview Assets.xcassets */; };
 		BFF9A042297F7D1200835F0E /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF9A041297F7D1200835F0E /* Consts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF0927FB298388770031F404 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BF3EF1BA2983516A00E17BE4 /* RecordModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RecordModel.xcdatamodel; sourceTree = "<group>"; };
 		BF6F7BA62979F5F3009DBB79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BF7F7A22298393880015AFF8 /* GameRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRulesView.swift; sourceTree = "<group>"; };
+		BF7F7A2529839F580015AFF8 /* RuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleView.swift; sourceTree = "<group>"; };
+		BF8344CB2982127700C883DC /* RecordsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsSheetView.swift; sourceTree = "<group>"; };
+		BF8424D52985B41B005B6FAA /* RecordTableRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableRowView.swift; sourceTree = "<group>"; };
+		BF8424D92985C024005B6FAA /* RecordsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsTableView.swift; sourceTree = "<group>"; };
 		BF8621472980BE6F00733626 /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		BF8B725F296E5CBA00809784 /* BallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		BF97A406298237E200DC8CA9 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		BFA3E86429777C3A001FEE8F /* GridCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridCellView.swift; sourceTree = "<group>"; };
 		BFBCAAB82977088D00B154C5 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		BFBCAABA2977143200B154C5 /* NextFiguresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextFiguresView.swift; sourceTree = "<group>"; };
@@ -36,7 +52,7 @@
 		BFE16966296D0BA900AFAC8C /* GameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFieldView.swift; sourceTree = "<group>"; };
 		BFE6A5E9296CFA4700140077 /* ColorLines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorLines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorLinesApp.swift; sourceTree = "<group>"; };
-		BFE6A5EE296CFA4700140077 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		BFE6A5EE296CFA4700140077 /* GameMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMainView.swift; sourceTree = "<group>"; };
 		BFE6A5F0296CFA4800140077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFE6A5F3296CFA4800140077 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BFF9A041297F7D1200835F0E /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
@@ -53,6 +69,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF0927F92983883E0031F404 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				BF8424D42985B3FD005B6FAA /* Records */,
+				BF0927FA298388620031F404 /* Settings */,
+				BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BF0927FA298388620031F404 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BF7F7A2429839F430015AFF8 /* Rules */,
+				BF0927FB298388770031F404 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BF3EF1B82983515C00E17BE4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BF3EF1B92983516A00E17BE4 /* RecordsModel.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF7F7A2429839F430015AFF8 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				BF7F7A22298393880015AFF8 /* GameRulesView.swift */,
+				BF7F7A2529839F580015AFF8 /* RuleView.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		BF8344CD2982159000C883DC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BF3EF1B82983515C00E17BE4 /* Model */,
+				BF97A406298237E200DC8CA9 /* PersistenceController.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		BF8424D42985B3FD005B6FAA /* Records */ = {
+			isa = PBXGroup;
+			children = (
+				BF8344CB2982127700C883DC /* RecordsSheetView.swift */,
+				BF8424D52985B41B005B6FAA /* RecordTableRowView.swift */,
+				BF8424D92985C024005B6FAA /* RecordsTableView.swift */,
+			);
+			path = Records;
+			sourceTree = "<group>";
+		};
 		BFABFDDA2980DA81004E020A /* Grid */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,7 +145,8 @@
 		BFABFDDC2980DAAA004E020A /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				BFBCAABC297729FB00B154C5 /* GameButtonsView.swift */,
+				BF0927F92983883E0031F404 /* Components */,
+				BFE6A5EE296CFA4700140077 /* GameMainView.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -98,12 +170,13 @@
 		BFE6A5EB296CFA4700140077 /* ColorLines */ = {
 			isa = PBXGroup;
 			children = (
-				BF6F7BA62979F5F3009DBB79 /* Info.plist */,
-				BFF9A040297F7CF500835F0E /* Utilities */,
 				BFE6A5FB296CFAF300140077 /* Models */,
 				BFE6A5FA296CFAE400140077 /* Views */,
+				BFF9A040297F7CF500835F0E /* Utilities */,
+				BF8344CD2982159000C883DC /* Data */,
 				BFE6A5EC296CFA4700140077 /* ColorLinesApp.swift */,
 				BFE6A5F0296CFA4800140077 /* Assets.xcassets */,
+				BF6F7BA62979F5F3009DBB79 /* Info.plist */,
 				BFE6A5F2296CFA4800140077 /* Preview Content */,
 			);
 			path = ColorLines;
@@ -123,7 +196,6 @@
 				BFABFDDC2980DAAA004E020A /* Game */,
 				BFABFDDB2980DA93004E020A /* Ball */,
 				BFABFDDA2980DA81004E020A /* Grid */,
-				BFE6A5EE296CFA4700140077 /* MainView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -217,13 +289,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF7F7A2629839F580015AFF8 /* RuleView.swift in Sources */,
+				BF8424D62985B41B005B6FAA /* RecordTableRowView.swift in Sources */,
+				BF8424DA2985C024005B6FAA /* RecordsTableView.swift in Sources */,
 				BFE16961296D000000AFAC8C /* FigureModel.swift in Sources */,
-				BFE6A5EF296CFA4700140077 /* MainView.swift in Sources */,
+				BFE6A5EF296CFA4700140077 /* GameMainView.swift in Sources */,
 				BFE16967296D0BA900AFAC8C /* GameFieldView.swift in Sources */,
+				BF3EF1BB2983516A00E17BE4 /* RecordsModel.xcdatamodeld in Sources */,
 				BF8B7260296E5CBA00809784 /* BallView.swift in Sources */,
 				BFE16963296D00F200AFAC8C /* ColorLinesViewModel.swift in Sources */,
 				BFBCAABD297729FB00B154C5 /* GameButtonsView.swift in Sources */,
+				BF8344CC2982127700C883DC /* RecordsSheetView.swift in Sources */,
+				BF7F7A23298393880015AFF8 /* GameRulesView.swift in Sources */,
 				BFBCAAB92977088D00B154C5 /* GameModel.swift in Sources */,
+				BF0927FC298388770031F404 /* SettingsView.swift in Sources */,
+				BF97A407298237E200DC8CA9 /* PersistenceController.swift in Sources */,
 				BF8621482980BE6F00733626 /* Sound.swift in Sources */,
 				BFE6A5ED296CFA4700140077 /* ColorLinesApp.swift in Sources */,
 				BFF9A042297F7D1200835F0E /* Consts.swift in Sources */,
@@ -367,14 +447,13 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aleksei.pokolev.color-lines";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -404,14 +483,13 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UIRequiresFullScreen = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.aleksei.pokolev.color-lines";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -445,6 +523,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BF3EF1B92983516A00E17BE4 /* RecordsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BF3EF1BA2983516A00E17BE4 /* RecordModel.xcdatamodel */,
+			);
+			currentVersion = BF3EF1BA2983516A00E17BE4 /* RecordModel.xcdatamodel */;
+			path = RecordsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BFE6A5E1296CFA4700140077 /* Project object */;
 }

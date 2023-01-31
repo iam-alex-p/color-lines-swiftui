@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NextFiguresView: View {
+    @Environment(\.horizontalSizeClass) private var hSizeClass
+    
     var figures: [Ball?]
     
     var body: some View {
@@ -18,7 +20,7 @@ struct NextFiguresView: View {
                 }
             }
         }
-        .aspectRatio(0.3, contentMode: .fit)
+        .aspectRatio(hSizeClass == .regular ? 0.3 : 0.4, contentMode: .fit)
     }
 }
 
